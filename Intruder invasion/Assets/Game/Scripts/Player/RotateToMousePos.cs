@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class RotateToMousePos : MonoBehaviour
 {
-    private void FixedUpdate()
+    private void Update()
     {
-        PointToMouse(transform);    
-    }
-    private void PointToMouse(Transform player)
-    {
-        var mouseScreenPos = Input.mousePosition;
-        var startingScreenPos = Camera.main.WorldToScreenPoint(player.position);
-        mouseScreenPos.x -= startingScreenPos.x;
-        mouseScreenPos.y -= startingScreenPos.y;
-        var angle = Mathf.Atan2(mouseScreenPos.y, mouseScreenPos.x) * Mathf.Rad2Deg;
-        player.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

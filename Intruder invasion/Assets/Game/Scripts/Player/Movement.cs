@@ -5,22 +5,22 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private Vector3 direction;
-    Rigidbody rb;
+    Rigidbody2D rb;
 
     [SerializeField] private float speed;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;   
     }
 
     private void FixedUpdate()
     {
-        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed ;   
-        rb.MovePosition(transform.position += direction);
+        rb.velocity = direction;
     }
 }

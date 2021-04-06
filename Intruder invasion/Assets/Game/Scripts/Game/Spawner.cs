@@ -27,7 +27,7 @@ public class spawn
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private int amountLimit;
-    [SerializeField] private int amountOfEnemies;
+    public int amountOfEnemies;
 
     public spawn[] spawns;
 
@@ -56,7 +56,6 @@ public class Spawner : MonoBehaviour
 
                 if (s.timer >= 1f && amountOfEnemies <= amountLimit)
                 {
-                    Debug.Log("Fuck you");
                     GameObject enemy = ObjectPooler.Instance.GetPooledObject(s.index);
                     enemy.transform.position = s.Location.position;
                     enemy.SetActive(true);

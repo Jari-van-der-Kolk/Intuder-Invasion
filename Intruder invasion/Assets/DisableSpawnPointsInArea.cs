@@ -5,26 +5,32 @@ using UnityEngine;
 public class DisableSpawnPointsInArea : MonoBehaviour
 {
     private IAreaCheckProvider areaCheckProvider;
-    GameObject[] foo;
-
-    private void Start()
+    public Collider2D[] current;
+    private void Awake()
     {
-         foo = GameObject.FindGameObjectsWithTag("Spawn Point");           
+        areaCheckProvider = GetComponent<IAreaCheckProvider>();
     }
 
     private void Update()
     {
-        foreach (Collider o in areaCheckProvider.Objects())
+        current = areaCheckProvider.Objects();
+        var previous = current;
+
+        for (int i = 0; i < SpawnHandler.instance.spawns.Length; i++)
         {
-            for (int i = 0; i < areaCheckProvider.Objects().Length; i++)
+            if (current == null) return;
+            if (SpawnHandler.instance.spawns[i].Location == current[i].transform)
             {
-
+                SpawnHandler.instance.spawns[i].OnOff = true;
+                Debug.Log(SpawnHandler.instance.spawns[i].name);
             }
-            o.gameObject.SetActive(false);
+            else if (SpawnHandler.instance.spawns[i].Location == previous[i].transform && SpawnHandler.instance.spawns[i].Location != current[i].transform)
+            {
+                Debug.Log("fuck you");
+            }
         }
-        if (true)
-        {
 
-        }
+
+
     }
 }

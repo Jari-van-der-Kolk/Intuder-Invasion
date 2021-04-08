@@ -39,6 +39,8 @@ public class SpawnHandler : MonoBehaviour
         for (int i = 0; i < spawns.Length; i++)
         {
             spawns[i].name = i.ToString();
+            spawns[i].Location.gameObject.AddComponent<DisableObject>();
+            spawns[i].Location.gameObject.GetComponent<DisableObject>().index = spawns[i].index;
         }
     }
     #endregion
@@ -104,7 +106,5 @@ public class SpawnHandler : MonoBehaviour
             Gizmos.DrawSphere(s.Location.position, .5f);
         }
     }
-
-
 }
 

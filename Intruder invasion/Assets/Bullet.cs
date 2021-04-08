@@ -8,11 +8,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] float damage;
     Rigidbody2D rBody;
     Transform player;
-    Spawner spawner;
+    SpawnHandler spawner;
     private void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
-        spawner = FindObjectOfType<Spawner>();
+        spawner = FindObjectOfType<SpawnHandler>();
     }
     private void OnEnable()
     {

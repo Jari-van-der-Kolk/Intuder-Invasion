@@ -24,7 +24,7 @@ public class spawn
 
 }
 
-public class Spawner : MonoBehaviour
+public class SpawnHandler : MonoBehaviour
 {
     [SerializeField] private int amountLimit;
     public int amountOfEnemies;
@@ -32,8 +32,15 @@ public class Spawner : MonoBehaviour
     public spawn[] spawns;
 
     #region Singleton
-    public static Spawner instance;
-    private void Awake() => instance = this;
+    public static SpawnHandler instance;
+    private void Awake()
+    {
+        instance = this;
+        for (int i = 0; i < spawns.Length; i++)
+        {
+            spawns[i].name = i.ToString();
+        }
+    }
     #endregion
 
     private void Start()

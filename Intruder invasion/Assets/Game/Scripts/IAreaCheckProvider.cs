@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IAreaCheckProvider
 {
     public bool inArray { get; }
-    public Collider[] Objects();
+    public Collider2D[] Objects();
 }

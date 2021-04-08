@@ -9,9 +9,9 @@ public class ObjectsInAreaWithLayer : MonoBehaviour, IAreaCheckProvider
 
     public bool inArray { get; }
 
-    public Collider[] Objects()
+    public Collider2D[] Objects()
     {
-        return Physics.OverlapBox(transform.position, radius,Quaternion.identity, mask);
+        return Physics2D.OverlapBoxAll(transform.position, radius, 0, mask); 
     }
     private void OnDrawGizmos()
     {

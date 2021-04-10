@@ -699,6 +699,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current: []
+  spawns:
+  - {fileID: 323105886}
+  - {fileID: 564108583}
+  - {fileID: 499433644}
+  - {fileID: 80691847}
+  - {fileID: 964266998}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

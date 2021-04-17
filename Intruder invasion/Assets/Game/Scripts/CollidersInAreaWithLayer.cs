@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectsInAreaWithLayer : MonoBehaviour, IAreaCheckProvider
+public class CollidersInAreaWithLayer : MonoBehaviour, IAreaColliderProvider
 {
     [SerializeField] private Vector3 radius;
     [SerializeField] private LayerMask mask;

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableObject : MonoBehaviour
+public interface IDisable
 {
-    public int index;
+    public void Enable();
+    public void Disable();
 }

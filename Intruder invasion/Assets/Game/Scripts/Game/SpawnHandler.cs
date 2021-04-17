@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Mathematics;
 
 [SerializeField]
 [System.Serializable]
@@ -26,6 +27,8 @@ public class spawn
 
 public class SpawnHandler : MonoBehaviour
 {
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private float2 radius;
     [SerializeField] private int amountLimit;
     public int amountOfEnemies;
 
@@ -38,9 +41,15 @@ public class SpawnHandler : MonoBehaviour
         instance = this;
         for (int i = 0; i < spawns.Length; i++)
         {
+            //Gives all the information to the spawn location objects to disable them if the player comes in the area
             spawns[i].name = i.ToString();
-            spawns[i].Location.gameObject.AddComponent<DisableObject>();
-            spawns[i].Location.gameObject.GetComponent<DisableObject>().index = spawns[i].index;
+            spawns[i].Location.gameObject.AddComponent<DisableSpawnMethods>();
+            spawns[i].Location.gameObject.GetComponent<DisableSpawnMethods>().index = spawns[i].name;
+            spawns[i].Location.gameObject.AddComponent<AreaCheck>();
+            var check = spawns[i].Location.gameObject.GetComponent<AreaCheck>();
+            check.radius = new Vector2(radius.x, radius.y);
+            check.mask = mask;
+            spawns[i].Location.gameObject.AddComponent<DisableSpawn>();
         }
     }
     #endregion
@@ -84,7 +93,7 @@ public class SpawnHandler : MonoBehaviour
     public void TurnOnOrOff(string name, bool OnOff)
     {
         spawn s = Array.Find(spawns, sound => sound.name == name);
-        if (s != null)
+        if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
@@ -104,6 +113,7 @@ public class SpawnHandler : MonoBehaviour
         {
             Gizmos.color = Color.black;
             Gizmos.DrawSphere(s.Location.position, .5f);
+            Gizmos.DrawWireCube(s.Location.position, new Vector2(radius.x,radius.y));
         }
     }
 }

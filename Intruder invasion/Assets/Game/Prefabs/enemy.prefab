@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2876453163437654937}
   - component: {fileID: 2876453163437654942}
   - component: {fileID: 2876453163437654916}
+  - component: {fileID: -3334938595323559366}
   - component: {fileID: 8883880779357703009}
   m_Layer: 8
   m_Name: enemy
@@ -134,6 +135,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 4
+--- !u!114 &-3334938595323559366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876453163437654943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d59b672d943974ea728a121dd55e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 10
 --- !u!58 &8883880779357703009
 CircleCollider2D:
   m_ObjectHideFlags: 0

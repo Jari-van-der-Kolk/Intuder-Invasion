@@ -27,6 +27,7 @@ public class spawn
 
 public class SpawnHandler : MonoBehaviour
 {
+    [SerializeField] private bool enableGizmos;
     [SerializeField] private LayerMask mask;
     [SerializeField] private float2 radius;
     [SerializeField] private int amountLimit;
@@ -109,11 +110,15 @@ public class SpawnHandler : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        foreach (spawn s in spawns)
+        if (enableGizmos == true)
         {
-            Gizmos.color = Color.black;
-            Gizmos.DrawSphere(s.Location.position, .5f);
-            Gizmos.DrawWireCube(s.Location.position, new Vector2(radius.x,radius.y));
+            foreach (spawn s in spawns)
+            {
+                Gizmos.color = Color.black;
+                Gizmos.DrawSphere(s.Location.position, .5f);
+                Gizmos.DrawWireCube(s.Location.position, new Vector2(radius.x,radius.y));
+            }
+
         }
     }
 }

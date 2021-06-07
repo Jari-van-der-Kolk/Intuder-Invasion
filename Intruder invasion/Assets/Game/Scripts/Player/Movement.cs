@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-
-    private Vector2 direction;
-    Rigidbody2D rb;
-
-    [SerializeField] private float maxForce;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float maxForce = 9.2f;
+    [SerializeField] private float maxSpeed = 2.8f;
+    [SerializeField] private float mass = 3f;
     [SerializeField] private Vector2 velocity;
-    [SerializeField] private float maxSpeed;
     [SerializeField] private Vector2 acceleration;
-    [SerializeField] private float mass;
 
+    Rigidbody2D rb;
 
     //f = a * m
 
@@ -27,18 +24,16 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
-        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        ApplyForce(Move(rb.position, rb.velocity));
     }
 
     void FixedUpdate()
     {
-        ApplyForce(direction);
-
         acceleration = Vector2.ClampMagnitude(acceleration, maxForce);
         acceleration /= mass;
 
-        velocity = Vector2.ClampMagnitude(velocity + acceleration, maxSpeed);
-        rb.position += velocity * Time.fixedDeltaTime;
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity + acceleration, maxSpeed);
+        rb.position += rb.velocity * Time.fixedDeltaTime;
 
 
         transform.position = rb.position;
@@ -54,7 +49,7 @@ public class Movement : MonoBehaviour
 
     Vector2 Move(Vector2 position, Vector2 velocity)
     {
-        Vector2 requestedDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
+        Vector2 requestedDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (requestedDirection != Vector2.zero)
             positionTarget = position + requestedDirection.normalized * max_desired_velocity;

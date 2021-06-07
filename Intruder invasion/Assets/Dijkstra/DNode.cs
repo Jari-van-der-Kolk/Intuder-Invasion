@@ -1,29 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
 
 public class DNode
 {
-    public bool visited;
-    public bool walkable;
 
-
-    public struct Costs
-    {
-        public float h; // distance to starting spot
-        public float g; // distance to ending spot 
-        public float f { get { return h + g; } }
-    }
-
-
-    // continue making the grid node
-
-
-    // reminder that it only has to go through the algoritm once
+    public float fCost{ get { return gCost - hCost; } }
+    public float gCost;
+    public float hCost;
     
-    // you can calculate the distance easaly in unity with : cost = (target - node position).mag
+    
 
-    // the node has to check its surroundings
-                                                            
-
+    public int gridX, gridY;
+    
+    public bool walkable;
+    public Vector3 worldPosition;
+	
+    public DNode(bool _walkable, Vector3 _worldPos,int _gridX, int _gridY ) {
+        walkable = _walkable;
+        worldPosition = _worldPos;
+        gridX = _gridX;
+        gridY = gridY;
+    }
+    
+    
 }

@@ -15,19 +15,14 @@ public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public Image background;
 
+    [Header("Events")]
     public UnityEvent onTabSelected;
     public UnityEvent onTabDeselected;
 
     private void Awake()
     {
         background = GetComponent<Image>();
-        
-    }
-
-
-    private void Start()
-    {
-        tabGroup.Subscribe(this);
+         tabGroup.Subscribe(this);
     }
 
     public void OnPointerClick(PointerEventData eventData)

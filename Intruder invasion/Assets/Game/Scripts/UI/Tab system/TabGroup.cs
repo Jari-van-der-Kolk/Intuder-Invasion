@@ -14,7 +14,7 @@ public class TabGroup : MonoBehaviour
     public TabButton selectedTab;
     public List<GameObject> objectsToSwap;
 
-    public PanelGroup panelGroup;
+    //public PanelGroup panelGroup;
     
     private void OnEnable()
     {
@@ -97,10 +97,10 @@ public class TabGroup : MonoBehaviour
             }
         }
 
-        if (panelGroup != null)
+        /*if (panelGroup != null)
         {
             panelGroup.SetPageIndex(button.transform.GetSiblingIndex());            
-        }
+        }*/
     }
 
     public void ResetTabs()

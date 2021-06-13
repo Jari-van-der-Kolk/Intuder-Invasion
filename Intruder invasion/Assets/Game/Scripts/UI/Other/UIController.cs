@@ -10,6 +10,18 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         panel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    
+    private void OnEnable()
+    {
+        Time.timeScale = 1f;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
     }
 
     private bool isMenuActive;
@@ -18,6 +30,10 @@ public class UIController : MonoBehaviour
     {
         isMenuActive = !isMenuActive;
         panel.SetActive(isMenuActive);
+        if (panel.activeSelf == true)
+            Time.timeScale = 0f;
+        else
+            Time.timeScale = 1f;
     }
 
     private void Update()
@@ -27,4 +43,6 @@ public class UIController : MonoBehaviour
             EnableMenu();
         }
     }
+
+    public void Quit() => Application.Quit();
 }

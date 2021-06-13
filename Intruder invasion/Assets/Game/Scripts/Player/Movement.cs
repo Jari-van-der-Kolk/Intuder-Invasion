@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,13 @@ public class Movement : MonoBehaviour
     //f = a * m
 
     //a = f / m
+
+    public static Movement Instance;
+    
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {

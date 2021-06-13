@@ -135,7 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee281d94f95536a408d89057f98795bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathPanel: {fileID: 0}
   startHealth: 4
+  isPlayer: 0
+  CurrentHealth: 0
 --- !u!114 &-3334938595323559366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae2b6a1097b82648812b9dad2a0df7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+  damage: 1
+  attackSpeed: 1
+  radius: 10
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
